@@ -110,7 +110,7 @@ function Search() {
 
 function Listbox() {
   const [isOpen1, setIsOpen1] = useState(true);
-  const [movies, setMovies] = useState(tempMovieData);
+
   return (
     <div className="box">
       <button
@@ -119,19 +119,26 @@ function Listbox() {
       >
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && <MoviList />}
-      <ul className="list">
-        {movies?.map((movie) => (
-          <Movie movie={movie} />
-        ))}
-      </ul>
+      {isOpen1 && <MovieList />}
     </div>
+  );
+}
+
+function MovieList() {
+  const [movies, setMovies] = useState(tempMovieData);
+
+  return (
+    <ul className="list">
+      {movies?.map((movie) => (
+        <Movie movie={movie} key={movie.imdbID} />
+      ))}
+    </ul>
   );
 }
 
 function Movie({ movie }) {
   return (
-    <li key={movie.imdbID}>
+    <li>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
