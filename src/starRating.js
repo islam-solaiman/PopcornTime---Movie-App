@@ -15,10 +15,11 @@ const textStyle = {
   margin: 0,
 };
 
-export default function StarRating() {
+const maxRating = 5;
+
+export default function StarRating({ maxRating }) {
   const [rating, setRating] = useState(0);
   const [tempRating, setTempRating] = useState(0);
-  const maxRating = 5;
 
   return (
     <div style={containerStyle}>
