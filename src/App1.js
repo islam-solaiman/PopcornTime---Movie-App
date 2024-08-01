@@ -53,16 +53,32 @@ const average = (arr) =>
 const KEY = "405c6e96";
 
 export default function App() {
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const tempQuery = 'interstellar';
 
+/*  useEffect (function() {
+    console.log("initial render")
+  }, []);
+
+  useEffect (function() {
+    console.log("Every render")
+  });
+
+  useEffect (function() {
+    console.log("During render")
+  }, [query]);
+
+  console.log("c");
+  */
   useEffect(function () {
     async function fetchMovies() {
       try{ setIsLoading(true);
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`
+        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
       );
 
       if (!res.ok) throw new Error('something went wrong with fethching movies')
@@ -77,12 +93,12 @@ export default function App() {
     }
     }
     fetchMovies();
-  }, []);
+  }, [query]);
 
   return (
     <>
       <Navbar>
-        <Search />
+        <Search query={query} setQuery={setQuery}/> 
         <NumResults movies={movies} />
       </Navbar>
       <Main>
@@ -127,7 +143,7 @@ function Logo() {
   return (
     <div className="logo">
       <span role="img">🍿</span>
-      <h1>usePopcorn</h1>
+      <h1>PopcornTime</h1>
     </div>
   );
 }
@@ -140,8 +156,7 @@ function NumResults({ movies }) {
   );
 }
 
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({query, setQuery}) {
   return (
     <input
       className="search"
