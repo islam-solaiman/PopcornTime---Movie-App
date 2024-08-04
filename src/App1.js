@@ -94,12 +94,15 @@ export default function App() {
 
   useEffect(
     function () {
+      const controller = new AbortController(); // to clean up old request when ther is new fetch request (happens due to each key stroke)
+
       async function fetchMovies() {
         try {
           setIsLoading(true);
           setError("");
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            { signal: controller.signal } // to connect Abortcontroller with fetch function
           );
 
           if (!res.ok)
@@ -107,9 +110,13 @@ export default function App() {
 
           const data = await res.json();
           setMovies(data.Search);
+          setError("");
         } catch (err) {
           console.error(err.message);
-          setError(err.message);
+          if (err.name !== "AbortError") {
+            //as when the request get canceled JS show that as abort error
+            setError(err.message);
+          }
         } finally {
           setIsLoading(false);
         }
@@ -120,6 +127,10 @@ export default function App() {
         return;
       }
       fetchMovies();
+      return function () {
+        // clean up function
+        controller.abort();
+      };
     },
     [query]
   );
@@ -169,7 +180,7 @@ function Loader() {
 function ErrorMessage({ message }) {
   return (
     <p className="error">
-      <span>⛔</span>
+      <span>⛔Movie not found</span>
       {message}
     </p>
   );
@@ -278,13 +289,7 @@ function Movie({ movie, onSelectMovie }) {
   );
 }
 
-function MovieDetails({
-  selectedId,
-  oncloseMovie,
-  onAddWatched,
-  watched,
-  handleDeleteWatched,
-}) {
+function MovieDetails({ selectedId, oncloseMovie, onAddWatched, watched }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
@@ -336,6 +341,18 @@ function MovieDetails({
       getMovieDetials();
     },
     [selectedId]
+  );
+
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `${title}`;
+
+      return function () {
+        document.title = "PopCorn Time";
+      };
+    },
+    [title]
   );
 
   return (
