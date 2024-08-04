@@ -61,26 +61,11 @@ export default function App() {
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
-  /*  useEffect (function() {
-    console.log("initial render")
-  }, []);
-
-  useEffect (function() {
-    console.log("Every render")
-  });
-
-  useEffect (function() {
-    console.log("During render")
-  }, [query]);
-
-  console.log("c");
-  */
-
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
 
-  function oncloseMovie() {
+  function handleoseMovie() {
     setSelectedId(null);
   }
 
@@ -112,9 +97,9 @@ export default function App() {
           setMovies(data.Search);
           setError("");
         } catch (err) {
-          console.error(err.message);
           if (err.name !== "AbortError") {
             //as when the request get canceled JS show that as abort error
+            console.log(err.message);
             setError(err.message);
           }
         } finally {
@@ -126,6 +111,7 @@ export default function App() {
         setError("");
         return;
       }
+      handleoseMovie();
       fetchMovies();
       return function () {
         // clean up function
@@ -154,7 +140,7 @@ export default function App() {
           {selectedId ? (
             <MovieDetails
               selectedId={selectedId}
-              oncloseMovie={oncloseMovie}
+              oncloseMovie={handleoseMovie}
               onAddWatched={handleAddWatched}
               watched={watched}
             />
@@ -241,29 +227,6 @@ function Box({ children }) {
   );
 }
 
-// function WatchedBox() {
-
-//   const [isOpen2, setIsOpen2] = useState(true);
-
-//   return (
-//     <div className="box">
-//       <button
-//         className="btn-toggle"
-//         onClick={() => setIsOpen2((open) => !open)}
-//       >
-//         {isOpen2 ? "–" : "+"}
-//       </button>
-//       {isOpen2 && (
-//         <>
-//           <WatchedSummary watched={watched} />
-
-//           <WatchedMovieList watched={watched} />
-//         </>
-//       )}
-//     </div>
-//   );
-// }
-
 function MovieList({ movies, onSelectMovie }) {
   return (
     <ul className="list list-movies">
@@ -326,6 +289,20 @@ function MovieDetails({ selectedId, oncloseMovie, onAddWatched, watched }) {
     onAddWatched(newWatchedMovie);
     oncloseMovie();
   }
+
+  useEffect(function () {
+
+    function callback(e) {
+      if (e.code === "Escape") {
+        oncloseMovie();
+      }
+    }
+    document.addEventListener("keydown", callback);
+    
+    return function() {     // clean up the event listner every time the component renders 
+      document.removeEventListener("keydown", callback);
+    }
+  }, [oncloseMovie]);
 
   useEffect(
     function () {
