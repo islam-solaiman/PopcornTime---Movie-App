@@ -290,19 +290,22 @@ function MovieDetails({ selectedId, oncloseMovie, onAddWatched, watched }) {
     oncloseMovie();
   }
 
-  useEffect(function () {
-
-    function callback(e) {
-      if (e.code === "Escape") {
-        oncloseMovie();
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          oncloseMovie();
+        }
       }
-    }
-    document.addEventListener("keydown", callback);
-    
-    return function() {     // clean up the event listner every time the component renders 
-      document.removeEventListener("keydown", callback);
-    }
-  }, [oncloseMovie]);
+      document.addEventListener("keydown", callback);
+
+      return function () {
+        // clean up the event listner every time the component renders
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [oncloseMovie]
+  );
 
   useEffect(
     function () {

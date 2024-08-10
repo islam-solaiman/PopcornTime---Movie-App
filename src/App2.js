@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./starRating";
-
-
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -16,8 +14,8 @@ export default function App() {
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
-  const [watched, setWatched] = useState(function(){
-    const storedValue=  localStorage.getItem('watched');
+  const [watched, setWatched] = useState(function () {
+    const storedValue = localStorage.getItem("watched");
     return JSON.parse(storedValue);
   });
 
@@ -38,9 +36,12 @@ export default function App() {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
 
-  useEffect(function() {
-    localStorage.setItem('watched', JSON.stringify(watched))
-  }, [watched])
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
+  );
 
   useEffect(
     function () {
@@ -168,6 +169,30 @@ function NumResults({ movies }) {
 }
 
 function Search({ query, setQuery }) {
+  // useEffect(function () {
+  //   const el = document.querySelector(".search");
+  //   console.log(el);
+  //   el.focus();
+  // }, []);
+
+  const inputEl = useRef(null);
+
+  useEffect(
+    function () {
+      function callback(e) {
+        if (document.activeElement === inputEl.current) return;
+
+        if (e.code === "Enter") {
+          inputEl.current.focus();
+          setQuery("");
+        }
+      }
+      document.addEventListener("keydown", callback);
+      return () => document.addEventListener("keydown", callback);
+    },
+    [setQuery]
+  );
+
   return (
     <input
       className="search"
@@ -175,6 +200,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
     />
   );
 }
@@ -255,19 +281,22 @@ function MovieDetails({ selectedId, oncloseMovie, onAddWatched, watched }) {
     oncloseMovie();
   }
 
-  useEffect(function () {
-
-    function callback(e) {
-      if (e.code === "Escape") {
-        oncloseMovie();
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === "Escape") {
+          oncloseMovie();
+        }
       }
-    }
-    document.addEventListener("keydown", callback);
-    
-    return function() {     // clean up the event listner every time the component renders 
-      document.removeEventListener("keydown", callback);
-    }
-  }, [oncloseMovie]);
+      document.addEventListener("keydown", callback);
+
+      return function () {
+        // clean up the event listner every time the component renders
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [oncloseMovie]
+  );
 
   useEffect(
     function () {
