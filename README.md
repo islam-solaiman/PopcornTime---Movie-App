@@ -5,7 +5,7 @@ Check out the <a href="">live PopCornTime App here</a>.
 </h2>
 
 <p align="center">
-  <img alt="PopCornTime" src="./src/public/popCornTime.gif" width="100%" />
+  <img alt="PopCornTime" src="./public/popCornTime.gif" width="100%" />
 </p>
 
 <p align="left">
