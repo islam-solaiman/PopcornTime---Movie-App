@@ -41,6 +41,15 @@ body {
   border-radius: 0.9rem;
 }
 
+@media (max-width: 900px){
+  .nav-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height:  12rem;
+  }
+}
+
 .main {
   margin-top: 2.4rem;
   height: calc(100vh - 7.2rem - 3 * 2.4rem);
@@ -108,6 +117,12 @@ body {
 
   /* background-color: var(--color-background-900); */
   background-color: var(--color-primary-light);
+}
+
+@media (max-width: 900px){
+  .search{
+    margin: 5px;
+  }
 }
 
 .search::placeholder {
