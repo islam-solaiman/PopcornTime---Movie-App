@@ -9,7 +9,7 @@ Check out the <a href="">live PopCornTime App here</a>.
 </p>
 
 <p align="left">
-usePopcorn is a react application that enables users to explore movies, give rating, and manage  watched movies list. By leveraging the OMDB API (Open Movie Database), the app gains access to an extensive movie database, allowing users to quickly and easily find movie information, including genre, cast, director, ratings, and much more. This application is a part of a course offered by Jonas Schmedtmann. I built the application when i took the course.
+PopCorn Time is a react application that enables users to explore movies, give rating, and manage  watched movies list. By leveraging the OMDB API (Open Movie Database), the app gains access to an extensive movie database, allowing users to quickly and easily find movie information, including genre, cast, director, ratings, and much more. This application is a part of a course offered by Jonas Schmedtmann. I built the application when i took the course.
 </p>
 
 ## Features
