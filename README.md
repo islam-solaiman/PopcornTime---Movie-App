@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+<h1 align="center">PopCorn Time</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h2 align="center">
+Check out the <a href="">live PopCornTime App here</a>.
+</h2>
 
-## Available Scripts
+<p align="center">
+  <img alt="PopCornTime" src="./src/public/popCornTime.gif" width="100%" />
+</p>
 
-In the project directory, you can run:
+<p align="left">
+usePopcorn is a react application that enables users to explore movies, give rating, and manage  watched movies list. By leveraging the OMDB API (Open Movie Database), the app gains access to an extensive movie database, allowing users to quickly and easily find movie information, including genre, cast, director, ratings, and much more. This application is a part of a course offered by Jonas Schmedtmann. I built the application when i took the course.
+</p>
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Search for movies
+- Show movies details
+- Rate movies and add to watched list
+- Remove movie from watched list
+- Show watched movies details summery
+- Use Enter key to start searching movie
+- Use Esc key to close the movie detail
+- watched movies stored in browser local storage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Built with
 
-### `npm test`
+- HTML5
+- CSS3
+- JavaScript
+- React
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+- Clone this repo:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+git clone https://github.com/islam-solaiman/PopcornTime-Movie-App.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Install dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+npm install
+```
 
-### `npm run eject`
+- Run the app:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```sh
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Author
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<b>👤 Islam Solaiman</b>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- LinkedIn - [@Islam Solaiman](https://www.linkedin.com/in/islam-solaiman/)
+- Github: [@islam Solaiman](https://github.com/islam-solaiman)
 
-## Learn More
+Feel free to contact me with any questions or feedback!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Credits
 
-### Code Splitting
+This app was created as part of [Jonas Smechmann](https://twitter.com/jonasschmedtman)'s Udemy course [The Ultimate React Course 2024: React, Next.js, Redux & More](https://www.udemy.com/course/the-ultimate-react-course/?couponCode=KEEPLEARNING).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Special thanks to Jonas for his excellent teaching and guidance throughout the course.
 
-### Analyzing the Bundle Size
+## Show your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Give a ⭐️ if you liked this project!
